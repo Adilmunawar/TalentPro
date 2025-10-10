@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -34,7 +34,7 @@ export default function RootLayout({
             <Logo />
             <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
               <a href="#features" className="text-foreground/80 hover:text-foreground transition-colors">Features</a>
-              <a href="#pricing" className="text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
+              <a href="#testimonials" className="text-foreground/80 hover:text-foreground transition-colors">Testimonials</a>
               <a href="#contact" className="text-foreground/80 hover:text-foreground transition-colors">Contact</a>
             </nav>
             <Button>Get Started</Button>
