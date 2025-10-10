@@ -1,16 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarHeader,
-  SidebarProvider,
-  SidebarTrigger,
-} from '@/components/ui/sidebar';
 import { Logo } from '@/components/logo';
-import { MainNav } from '@/components/main-nav';
-import { UserNav } from '@/components/user-nav';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Talent Pros',
@@ -37,35 +29,50 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <SidebarProvider>
-          <div className="relative flex min-h-screen w-full">
-            <Sidebar collapsible="icon" className="hidden border-r bg-background md:flex">
-              <SidebarHeader>
-                <Logo />
-              </SidebarHeader>
-              <SidebarContent>
-                <MainNav />
-              </SidebarContent>
-            </Sidebar>
-             <div className="flex w-full flex-col">
-              <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
-                <div className="flex items-center gap-2">
-                   <SidebarTrigger className="md:hidden"/>
-                   <div className="hidden md:block">
-                     {/* The sidebar will be here on desktop */}
-                   </div>
+        <div className="flex min-h-screen w-full flex-col">
+          <header className="sticky top-0 z-30 flex h-20 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
+            <Logo />
+            <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+              <a href="#features" className="text-foreground/80 hover:text-foreground transition-colors">Features</a>
+              <a href="#pricing" className="text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
+              <a href="#contact" className="text-foreground/80 hover:text-foreground transition-colors">Contact</a>
+            </nav>
+            <Button>Get Started</Button>
+          </header>
+          <main className="flex-1">{children}</main>
+          <footer className="bg-background border-t">
+            <div className="container mx-auto px-4 sm:px-6 py-8">
+              <div className="grid gap-8 md:grid-cols-3">
+                <div>
+                  <Logo />
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    International Human Resource Solutions.
+                  </p>
                 </div>
-                 <div className="flex-1">
-                   {/* We can add breadcrumbs or a page title here in the future */}
+                 <div className="grid grid-cols-2 md:col-span-2 gap-8">
+                    <div>
+                      <h4 className="font-semibold font-headline">Company</h4>
+                      <ul className="mt-2 space-y-2 text-sm">
+                        <li><a href="#" className="text-muted-foreground hover:text-foreground">About Us</a></li>
+                        <li><a href="#" className="text-muted-foreground hover:text-foreground">Careers</a></li>
+                        <li><a href="#" className="text-muted-foreground hover:text-foreground">Press</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold font-headline">Legal</h4>
+                      <ul className="mt-2 space-y-2 text-sm">
+                        <li><a href="#" className="text-muted-foreground hover:text-foreground">Terms of Service</a></li>
+                        <li><a href="#" className="text-muted-foreground hover:text-foreground">Privacy Policy</a></li>
+                      </ul>
+                    </div>
                  </div>
-                <UserNav />
-              </header>
-              <main className="flex-1 overflow-auto p-4 sm:p-6">
-                {children}
-              </main>
+              </div>
+               <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
+                 <p>&copy; {new Date().getFullYear()} Talent Pros. All rights reserved.</p>
+               </div>
             </div>
-          </div>
-        </SidebarProvider>
+          </footer>
+        </div>
         <Toaster />
       </body>
     </html>
