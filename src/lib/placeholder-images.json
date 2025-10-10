@@ -1,3 +1,70 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "user-avatar",
+      "description": "User avatar",
+      "imageUrl": "https://picsum.photos/seed/user-avatar/40/40",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "candidate-1",
+      "description": "Candidate avatar 1",
+      "imageUrl": "https://picsum.photos/seed/candidate1/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "candidate-2",
+      "description": "Candidate avatar 2",
+      "imageUrl": "https://picsum.photos/seed/candidate2/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "candidate-3",
+      "description": "Candidate avatar 3",
+      "imageUrl": "https://picsum.photos/seed/candidate3/100/100",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "candidate-4",
+      "description": "Candidate avatar 4",
+      "imageUrl": "https://picsum.photos/seed/candidate4/100/100",
+      "imageHint": "professional headshot"
+    },
+    {
+      "id": "candidate-5",
+      "description": "Candidate avatar 5",
+      "imageUrl": "https://picsum.photos/seed/candidate5/100/100",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "candidate-6",
+      "description": "Candidate avatar 6",
+      "imageUrl": "https://picsum.photos/seed/candidate6/100/100",
+      "imageHint": "man glasses"
+    },
+    {
+      "id": "company-logo-1",
+      "description": "Company logo 1",
+      "imageUrl": "https://picsum.photos/seed/clogo1/100/100",
+      "imageHint": "logo abstract"
+    },
+    {
+      "id": "company-logo-2",
+      "description": "Company logo 2",
+      "imageUrl": "https://picsum.photos/seed/clogo2/100/100",
+      "imageHint": "logo geometric"
+    },
+    {
+      "id": "company-logo-3",
+      "description": "Company logo 3",
+      "imageUrl": "https://picsum.photos/seed/clogo3/100/100",
+      "imageHint": "logo minimal"
+    },
+    {
+      "id": "company-logo-4",
+      "description": "Company logo 4",
+      "imageUrl": "https://picsum.photos/seed/clogo4/100/100",
+      "imageHint": "logo nature"
+    }
+  ]
 }
