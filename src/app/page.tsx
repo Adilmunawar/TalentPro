@@ -6,6 +6,7 @@ import {
   Globe2,
   ShieldCheck,
   Star,
+  MoveUpRight,
 } from 'lucide-react';
 import Image from 'next/image';
 import {
@@ -38,7 +39,7 @@ export default function LandingPage() {
       name: 'David Chen',
       title: 'CEO, Innovate Solutions',
       quote:
-        "The AI-powered compliance and document verification features are game-changers. It has saved us countless hours and given us peace of mind when hiring internationally. Highly recommended!",
+        'The AI-powered compliance and document verification features are game-changers. It has saved us countless hours and given us peace of mind when hiring internationally. Highly recommended!',
       avatar: 'https://picsum.photos/seed/t2/100/100',
       dataAiHint: 'man portrait',
     },
@@ -46,7 +47,7 @@ export default function LandingPage() {
       name: 'Maria Garcia',
       title: 'HR Manager, Global Reach',
       quote:
-        "An indispensable tool for any company looking to expand its global workforce. The support team is responsive, and the platform continuously evolves with features that matter.",
+        'An indispensable tool for any company looking to expand its global workforce. The support team is responsive, and the platform continuously evolves with features that matter.',
       avatar: 'https://picsum.photos/seed/t3/100/100',
       dataAiHint: 'professional headshot',
     },
@@ -71,14 +72,14 @@ export default function LandingPage() {
               Connecting you with top-tier international talent and simplifying
               complex hiring processes with cutting-edge AI.
             </p>
-            <div className="mt-10 flex justify-center gap-4 animate-slide-up-fade animation-delay-600">
-              <Button size="lg" className="px-10 py-6 text-lg">
-                Find Talent
+            <div className="mt-10 flex flex-wrap justify-center gap-4 animate-slide-up-fade animation-delay-600">
+              <Button size="lg" className="px-10 py-6 text-lg group hover:scale-105 transition-transform">
+                Find Talent <MoveUpRight className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </Button>
               <Button
                 size="lg"
                 variant="secondary"
-                className="px-10 py-6 text-lg"
+                className="px-10 py-6 text-lg hover:scale-105 transition-transform"
               >
                 Explore Jobs
               </Button>
@@ -159,7 +160,7 @@ export default function LandingPage() {
                     className="md:basis-1/2 lg:basis-1/2"
                   >
                     <div className="p-1 h-full">
-                      <Card className="flex flex-col h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+                      <Card className="flex flex-col h-full shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                         <CardHeader className="flex flex-row items-center gap-4">
                           <Avatar>
                             <AvatarImage
@@ -212,8 +213,9 @@ export default function LandingPage() {
               Join our platform today to connect with global companies and
               discover your dream job.
             </p>
-            <Button size="lg" className="mt-8 px-10 py-6 text-lg">
+            <Button size="lg" className="mt-8 px-10 py-6 text-lg group hover:scale-105 transition-transform">
               Get Started Now
+              <MoveUpRight className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Button>
           </div>
         </section>
@@ -232,8 +234,8 @@ function FeatureCard({
   description: string;
 }) {
   return (
-    <div className="flex flex-col items-center text-center p-8 bg-card rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
+    <div className="group flex flex-col items-center text-center p-8 bg-card rounded-xl shadow-sm hover:shadow-lg hover:scale-105 hover:bg-primary/5 transition-all duration-300 ease-in-out">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-6 transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
         {icon}
       </div>
       <h3 className="text-2xl font-headline font-semibold mb-2">{title}</h3>
