@@ -96,7 +96,7 @@ const Hero = () => {
       <Image
         src={heroBg}
         alt="Office collaboration"
-        layout="fill"
+        fill
         objectFit="cover"
         quality={100}
         className="absolute inset-0 z-0"

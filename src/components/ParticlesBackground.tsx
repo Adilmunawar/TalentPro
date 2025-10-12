@@ -91,7 +91,7 @@ const ParticlesBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
+      className="absolute inset-0 pointer-events-none z-[1]"
       style={{ opacity: 0.4 }}
     />
   );

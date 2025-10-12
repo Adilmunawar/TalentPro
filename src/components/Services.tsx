@@ -156,7 +156,7 @@ const Services = () => {
           <Image 
             src={teamWorkspace} 
             alt="Professional team workspace" 
-            layout="fill"
+            fill
             objectFit="cover"
             className="w-full h-[500px]"
           />
