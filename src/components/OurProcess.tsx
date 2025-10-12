@@ -19,13 +19,14 @@ const OurProcess = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -74,20 +75,22 @@ const OurProcess = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 10,
+        damping: 12,
       },
     },
   };
@@ -143,7 +146,6 @@ const OurProcess = () => {
                   "absolute -inset-0.5 rounded-3xl bg-gradient-to-br from-accent/50 to-blue-500/50 blur-lg transition-opacity duration-500",
                   hoveredStep === index ? "opacity-50" : "opacity-0"
                 )}
-                layoutId="process-glow"
               />
               <div className="relative bg-background p-8 rounded-2xl border-2 border-border group-hover:border-accent/50 transition-all duration-300 h-full flex flex-col card-hover">
                 <div className="flex justify-between items-start mb-6">
@@ -166,7 +168,7 @@ const OurProcess = () => {
                 
                 <div className="mt-8 h-1 w-full bg-border rounded-full overflow-hidden">
                   <motion.div
-                    className={`h-full bg-gradient-to-r ${step.color} from-accent to-blue-400`}
+                    className={`h-full bg-gradient-to-r from-accent to-blue-400`}
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: hoveredStep === index ? 1 : 0 }}
                     style={{ originX: 0 }}
