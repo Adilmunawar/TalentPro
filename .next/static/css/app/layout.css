@@ -1618,6 +1618,11 @@ video {
   --tw-rotate: 90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.scale-110 {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -1899,6 +1904,18 @@ video {
 .border-white\/30 {
   border-color: rgb(255 255 255 / 0.3);
 }
+.border-accent\/50 {
+  border-color: hsl(var(--accent) / 0.5);
+}
+.border-blue-500\/50 {
+  border-color: rgb(59 130 246 / 0.5);
+}
+.border-orange-500\/50 {
+  border-color: rgb(249 115 22 / 0.5);
+}
+.border-purple-500\/50 {
+  border-color: rgb(168 85 247 / 0.5);
+}
 .border-l-transparent {
   border-left-color: transparent;
 }
@@ -2005,6 +2022,24 @@ video {
 }
 .bg-white\/10 {
   background-color: rgb(255 255 255 / 0.1);
+}
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity, 1));
+}
+.bg-orange-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 237 213 / var(--tw-bg-opacity, 1));
+}
+.bg-orange-500\/10 {
+  background-color: rgb(249 115 22 / 0.1);
+}
+.bg-purple-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 232 255 / var(--tw-bg-opacity, 1));
+}
+.bg-purple-500\/10 {
+  background-color: rgb(168 85 247 / 0.1);
 }
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -2199,6 +2234,9 @@ video {
 }
 .to-blue-500\/50 {
   --tw-gradient-to: rgb(59 130 246 / 0.5) var(--tw-gradient-to-position);
+}
+.to-blue-500 {
+  --tw-gradient-to: #3b82f6 var(--tw-gradient-to-position);
 }
 .bg-clip-text {
   -webkit-background-clip: text;
@@ -2560,6 +2598,9 @@ video {
   --tw-text-opacity: 1;
   color: rgb(168 85 247 / var(--tw-text-opacity, 1));
 }
+.text-primary\/70 {
+  color: hsl(var(--primary) / 0.7);
+}
 .underline {
   text-decoration-line: underline;
 }
@@ -2590,6 +2631,9 @@ video {
 }
 .opacity-90 {
   opacity: 0.9;
+}
+.opacity-30 {
+  opacity: 0.3;
 }
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
@@ -2624,6 +2668,11 @@ video {
 .shadow-xl {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .shadow-\[var\(--shadow-glow\)\] {
@@ -3254,6 +3303,10 @@ All colors MUST be HSL.
 
 .group:hover .group-hover\:border-accent\/50 {
   border-color: hsl(var(--accent) / 0.5);
+}
+
+.group:hover .group-hover\:border-accent\/30 {
+  border-color: hsl(var(--accent) / 0.3);
 }
 
 .group:hover .group-hover\:bg-accent\/30 {
@@ -4018,6 +4071,22 @@ All colors MUST be HSL.
 
 .dark\:border-destructive:is(.dark *) {
   border-color: hsl(var(--destructive));
+}
+
+.dark\:bg-accent\/20:is(.dark *) {
+  background-color: hsl(var(--accent) / 0.2);
+}
+
+.dark\:bg-blue-900\/30:is(.dark *) {
+  background-color: rgb(30 58 138 / 0.3);
+}
+
+.dark\:bg-orange-900\/30:is(.dark *) {
+  background-color: rgb(124 45 18 / 0.3);
+}
+
+.dark\:bg-purple-900\/30:is(.dark *) {
+  background-color: rgb(88 28 135 / 0.3);
 }
 
 @media (min-width: 640px) {
