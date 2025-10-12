@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Users, Globe, Award, Sparkles } from "lucide-react";
+import { ArrowRight, Users, Globe, Award } from "lucide-react";
 import Image from "next/image";
 import heroBg from "@/assets/office-collaboration.jpg";
 import ParticlesBackground from "./ParticlesBackground";
@@ -151,7 +151,7 @@ const Hero = () => {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <Sparkles className="w-5 h-5" />
+              
               Trusted by 500+ Global Companies
             </motion.span>
           </motion.div>
@@ -273,11 +273,11 @@ const Hero = () => {
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="w-16 h-16 flex items-center justify-center rounded-2xl bg-white/10 mx-auto mb-4 transition-all duration-300 group-hover:bg-accent/20 group-hover:scale-110"
                   >
-                    <stat.icon className="w-8 h-8 text-accent mx-auto mb-3" />
+                    <stat.icon className="w-8 h-8 text-accent transition-all duration-300 group-hover:text-white" />
                   </motion.div>
+
                   <motion.div 
                     className="text-3xl md:text-4xl font-bold text-white mb-2"
                     animate={{ 

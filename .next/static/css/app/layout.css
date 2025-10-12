@@ -3325,12 +3325,21 @@ All colors MUST be HSL.
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.group:hover .group-hover\:bg-accent\/20 {
+  background-color: hsl(var(--accent) / 0.2);
+}
+
 .group:hover .group-hover\:text-accent {
   color: hsl(var(--accent));
 }
 
 .group:hover .group-hover\:text-primary\/20 {
   color: hsl(var(--primary) / 0.2);
+}
+
+.group:hover .group-hover\:text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .group\/menu-item:hover .group-hover\/menu-item\:opacity-100 {
