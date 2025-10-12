@@ -1,6 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Users, Globe, Award, Sparkles } from "lucide-react";
+import Image from "next/image";
 import heroBg from "@/assets/office-collaboration.jpg";
 import ParticlesBackground from "./ParticlesBackground";
 import { useEffect, useState, useRef } from "react";
@@ -31,25 +33,28 @@ const Hero = () => {
 
   const AnimatedCounter = ({ value, suffix }: { value: number; suffix: string }) => {
     const [count, setCount] = useState(0);
+    const heroInView = useInView(heroRef, { once: true, amount: 0.5 });
 
     useEffect(() => {
-      const duration = 2000;
-      const steps = 60;
-      const increment = value / steps;
-      let current = 0;
+      if (heroInView) {
+        const duration = 2000;
+        const steps = 60;
+        const increment = value / steps;
+        let current = 0;
 
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= value) {
-          setCount(value);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(current));
-        }
-      }, duration / steps);
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= value) {
+            setCount(value);
+            clearInterval(timer);
+          } else {
+            setCount(Math.floor(current));
+          }
+        }, duration / steps);
 
-      return () => clearInterval(timer);
-    }, [value]);
+        return () => clearInterval(timer);
+      }
+    }, [value, heroInView]);
 
     return (
       <span>
@@ -58,19 +63,48 @@ const Hero = () => {
       </span>
     );
   };
+  
+  const useInView = (ref: React.RefObject<Element>, options: IntersectionObserverInit) => {
+    const [isInView, setIsInView] = useState(false);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(([entry]) => {
+        setIsInView(entry.isIntersecting);
+      }, options);
+
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }, [ref, options]);
+
+    return isInView;
+  };
+
 
   return (
     <section
       ref={heroRef}
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(135deg, rgba(10, 37, 64, 0.95), rgba(0, 196, 154, 0.1)), url(${heroBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
     >
+      <Image
+        src={heroBg}
+        alt="Office collaboration"
+        layout="fill"
+        objectFit="cover"
+        quality={100}
+        className="absolute inset-0 z-0"
+        style={{
+            filter: 'brightness(0.4)',
+        }}
+      />
+       <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent z-1" />
       <ParticlesBackground />
 
       {/* Floating gradient orbs with 3D parallax */}
@@ -278,6 +312,7 @@ const Hero = () => {
           transition={{ repeat: Infinity, duration: 1.5 }}
           whileHover={{ scale: 1.2 }}
           className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center cursor-pointer group"
+          onClick={() => scrollToSection("services")}
         >
           <motion.div
             animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}

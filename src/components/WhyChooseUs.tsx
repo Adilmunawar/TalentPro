@@ -1,10 +1,11 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Globe, Target, Zap, CheckCircle } from "lucide-react";
 
 const WhyChooseUs = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -20,7 +21,11 @@ const WhyChooseUs = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   const features = [
@@ -55,14 +60,12 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
-      {/* Background decoration */}
+    <section id="why-choose-us" ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
       <div className="absolute top-20 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
 
       <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
@@ -106,7 +109,6 @@ const WhyChooseUs = () => {
             </div>
           </motion.div>
 
-          {/* Right Column - Features */}
           <div className="space-y-6">
             {features.map((feature, index) => (
               <motion.div
@@ -133,11 +135,11 @@ const WhyChooseUs = () => {
                   </h3>
                   <p className="text-foreground/70 leading-relaxed">{feature.description}</p>
                   
-                  {/* Progress bar decoration */}
                   <div className="mt-4 h-1 bg-border rounded-full overflow-hidden">
                     <motion.div
-                      initial={{ width: 0 }}
-                      animate={isVisible ? { width: "100%" } : {}}
+                      initial={{ width: "0%" }}
+                      whileInView={{ width: "100%" }}
+                      viewport={{ once: true, amount: 'all' }}
                       transition={{ delay: 0.5 + index * 0.15, duration: 1 }}
                       className="h-full bg-gradient-to-r from-accent to-blue-400"
                     />

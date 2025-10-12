@@ -1,11 +1,13 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Users, Building2, GraduationCap, Briefcase, Code, Heart, TrendingUp, Shield } from "lucide-react";
+import Image from "next/image";
 import teamWorkspace from "@/assets/team-workspace.jpg";
 
 const Services = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -21,7 +23,11 @@ const Services = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   const services = [
@@ -84,8 +90,7 @@ const Services = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-32 bg-muted relative overflow-hidden">
-      {/* Background decorations */}
+    <section ref={sectionRef} id="services" className="py-32 bg-muted relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
       <div className="absolute -top-20 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
       <div className="absolute -bottom-20 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
@@ -114,7 +119,6 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {services.map((service, index) => (
             <motion.div
@@ -127,7 +131,7 @@ const Services = () => {
               <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-2xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500`} />
               
               <div className="relative bg-background rounded-2xl p-8 border-2 border-border hover:border-accent/50 transition-all duration-300 hover-lift h-full">
-                <div className={service.iconBg + " w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300"}>
+                <div className={`${service.iconBg} w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-8 h-8 text-white" />
                 </div>
                 
@@ -142,7 +146,6 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Feature Image Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -150,10 +153,12 @@ const Services = () => {
           className="relative rounded-3xl overflow-hidden shadow-2xl"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent z-10" />
-          <img 
+          <Image 
             src={teamWorkspace} 
             alt="Professional team workspace" 
-            className="w-full h-[500px] object-cover"
+            layout="fill"
+            objectFit="cover"
+            className="w-full h-[500px]"
           />
           <div className="absolute inset-0 z-20 flex items-end p-12">
             <div className="max-w-3xl">

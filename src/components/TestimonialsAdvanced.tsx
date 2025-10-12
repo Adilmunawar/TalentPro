@@ -1,6 +1,8 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import Image from "next/image";
 import { Button } from "./ui/button";
 import testimonial1 from "@/assets/testimonial-1.jpg";
 import testimonial2 from "@/assets/testimonial-2.jpg";
@@ -9,10 +11,10 @@ import testimonial4 from "@/assets/testimonial-4.jpg";
 import testimonial5 from "@/assets/testimonial-5.jpg";
 
 const TestimonialsAdvanced = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -27,7 +29,11 @@ const TestimonialsAdvanced = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   const testimonials = [
@@ -95,7 +101,6 @@ const TestimonialsAdvanced = () => {
 
   return (
     <section id="testimonials" ref={sectionRef} className="py-32 bg-gradient-to-b from-muted to-background relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
       <div className="absolute -top-40 right-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
@@ -124,7 +129,6 @@ const TestimonialsAdvanced = () => {
           </p>
         </motion.div>
 
-        {/* Main Testimonial Card */}
         <div className="max-w-6xl mx-auto relative">
           <AnimatePresence mode="wait">
             <motion.div
@@ -136,13 +140,11 @@ const TestimonialsAdvanced = () => {
               className="relative"
             >
               <div className="bg-gradient-to-br from-background via-background to-accent/5 p-12 md:p-16 rounded-3xl border-2 border-accent/20 shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(0,196,154,0.3)] transition-all duration-500">
-                {/* Quote Icon */}
                 <div className="absolute -top-8 -left-8 bg-gradient-to-br from-accent via-accent to-accent/70 w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl rotate-12 hover:rotate-0 transition-transform duration-500">
                   <Quote className="w-10 h-10 text-white" />
                 </div>
 
                 <div className="grid md:grid-cols-[auto,1fr] gap-8 items-start">
-                  {/* Author Image */}
                   <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -150,15 +152,16 @@ const TestimonialsAdvanced = () => {
                     className="relative group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-accent to-blue-400 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
-                    <img 
+                    <Image 
                       src={testimonials[currentIndex].image} 
                       alt={testimonials[currentIndex].name}
+                      width={160}
+                      height={160}
                       className="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover border-4 border-background shadow-xl"
                     />
                   </motion.div>
 
                   <div>
-                    {/* Rating */}
                     <div className="flex gap-1 mb-6">
                       {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                         <motion.div
@@ -172,12 +175,10 @@ const TestimonialsAdvanced = () => {
                       ))}
                     </div>
 
-                    {/* Quote Text */}
                     <p className="text-xl md:text-2xl lg:text-3xl text-foreground font-medium mb-8 leading-relaxed">
                       "{testimonials[currentIndex].quote}"
                     </p>
 
-                    {/* Author Info */}
                     <div>
                       <p className="font-bold text-2xl text-primary mb-1">{testimonials[currentIndex].name}</p>
                       <p className="text-lg text-foreground/70">
@@ -190,7 +191,6 @@ const TestimonialsAdvanced = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
           <div className="flex justify-center gap-4 mt-12">
             <Button
               variant="outline"
@@ -210,7 +210,6 @@ const TestimonialsAdvanced = () => {
             </Button>
           </div>
 
-          {/* Dots Indicator */}
           <div className="flex justify-center gap-3 mt-8">
             {testimonials.map((_, index) => (
               <button
@@ -221,12 +220,12 @@ const TestimonialsAdvanced = () => {
                     ? "w-12 h-3 bg-accent shadow-lg"
                     : "w-3 h-3 bg-border hover:bg-accent/50"
                 }`}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
         </div>
 
-        {/* Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}

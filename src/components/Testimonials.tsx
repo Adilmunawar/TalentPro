@@ -1,12 +1,13 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Button } from "./ui/button";
 
 const Testimonials = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,7 +23,11 @@ const Testimonials = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   const testimonials = [
@@ -68,11 +73,10 @@ const Testimonials = () => {
       const interval = setInterval(nextTestimonial, 5000);
       return () => clearInterval(interval);
     }
-  }, [isVisible]);
+  }, [isVisible, nextTestimonial]);
 
   return (
     <section id="testimonials" ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
 
@@ -99,7 +103,6 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        {/* Main Testimonial Card */}
         <div className="max-w-5xl mx-auto relative">
           <AnimatePresence mode="wait">
             <motion.div
@@ -111,24 +114,20 @@ const Testimonials = () => {
               className="relative"
             >
               <div className="bg-gradient-to-br from-card via-card to-accent/5 p-12 rounded-3xl border-2 border-border shadow-2xl">
-                {/* Quote Icon */}
                 <div className="absolute -top-6 -left-6 bg-gradient-to-br from-accent to-accent/70 w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg rotate-12">
                   <Quote className="w-8 h-8 text-white" />
                 </div>
 
-                {/* Rating */}
                 <div className="flex gap-1 mb-6">
                   {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-accent text-accent" />
                   ))}
                 </div>
 
-                {/* Quote Text */}
                 <p className="text-2xl md:text-3xl text-foreground font-medium mb-8 leading-relaxed italic">
                   "{testimonials[currentIndex].quote}"
                 </p>
 
-                {/* Author */}
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-accent to-blue-400 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
                     {testimonials[currentIndex].avatar}
@@ -144,7 +143,6 @@ const Testimonials = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
           <div className="flex justify-center gap-4 mt-8">
             <Button
               variant="outline"
@@ -164,7 +162,6 @@ const Testimonials = () => {
             </Button>
           </div>
 
-          {/* Dots Indicator */}
           <div className="flex justify-center gap-2 mt-6">
             {testimonials.map((_, index) => (
               <button
@@ -175,12 +172,12 @@ const Testimonials = () => {
                     ? "w-8 h-2 bg-accent"
                     : "w-2 h-2 bg-border hover:bg-accent/50"
                 }`}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
         </div>
 
-        {/* Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}

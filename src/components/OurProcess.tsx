@@ -1,11 +1,12 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Search, Users, CheckCircle, Sparkles } from "lucide-react";
 
 const OurProcess = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -21,7 +22,11 @@ const OurProcess = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -74,7 +79,6 @@ const OurProcess = () => {
 
   return (
     <section id="process" ref={sectionRef} className="py-32 bg-background relative overflow-hidden">
-      {/* Animated background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
@@ -115,7 +119,6 @@ const OurProcess = () => {
               onMouseEnter={() => setActiveStep(index)}
               className="relative group"
             >
-              {/* Glow effect on active */}
               {activeStep === index && (
                 <motion.div
                   layoutId="activeGlow"
@@ -131,12 +134,10 @@ const OurProcess = () => {
                     : "border-border hover:border-accent/40"
                 }`}
               >
-                {/* Step Number Background */}
                 <div className="absolute top-6 right-6 text-8xl font-bold opacity-5 leading-none select-none">
                   {step.number}
                 </div>
 
-                {/* Icon */}
                 <motion.div
                   animate={{
                     scale: activeStep === index ? 1.1 : 1,
@@ -147,7 +148,6 @@ const OurProcess = () => {
                   <step.icon className="w-8 h-8 text-white" />
                 </motion.div>
 
-                {/* Content */}
                 <h3 className="relative text-2xl font-bold mb-4 text-primary group-hover:text-accent transition-colors">
                   {step.title}
                 </h3>
@@ -155,18 +155,16 @@ const OurProcess = () => {
                   {step.description}
                 </p>
 
-                {/* Progress bar */}
                 <div className="mt-6 h-1 bg-border rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={activeStep === index ? { width: "100%" } : { width: 0 }}
-                    transition={{ duration: 4 }}
-                    className={step.bgColor}
+                    transition={{ duration: 4, ease: "linear" }}
+                    className={`h-full ${step.bgColor}`}
                   />
                 </div>
               </div>
 
-              {/* Connecting line (except for last item on desktop) */}
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-24 -right-4 z-20">
                   <motion.div
@@ -187,7 +185,6 @@ const OurProcess = () => {
           ))}
         </div>
 
-        {/* Progress indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isVisible ? { opacity: 1 } : {}}
@@ -199,6 +196,7 @@ const OurProcess = () => {
               key={index}
               onClick={() => setActiveStep(index)}
               className="group relative flex items-center gap-2"
+              aria-label={`Show step ${index + 1}`}
             >
               <div
                 className={`w-16 h-2 rounded-full transition-all duration-500 ${

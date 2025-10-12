@@ -1,5 +1,7 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import googleLogo from "@/assets/logos/google.png";
 import microsoftLogo from "@/assets/logos/microsoft.png";
 import amazonLogo from "@/assets/logos/amazon.png";
@@ -10,7 +12,6 @@ import ibmLogo from "@/assets/logos/ibm.png";
 import netflixLogo from "@/assets/logos/netflix.png";
 
 const ClientLogosAdvanced = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -21,7 +22,8 @@ const ClientLogosAdvanced = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8]);
 
-  useEffect(() => {
+  const [isVisible, setIsVisible] = useState(false);
+    useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -35,7 +37,11 @@ const ClientLogosAdvanced = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   const clients = [
@@ -49,12 +55,10 @@ const ClientLogosAdvanced = () => {
     { name: "Netflix", logo: netflixLogo },
   ];
 
-  // Triple for seamless loop
   const duplicatedClients = [...clients, ...clients, ...clients];
 
   return (
     <section ref={sectionRef} className="py-24 bg-gradient-to-b from-background to-muted relative overflow-hidden">
-      {/* Background decoration with parallax */}
       <motion.div 
         style={{ y: y }}
         className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent" 
@@ -90,7 +94,6 @@ const ClientLogosAdvanced = () => {
           Join hundreds of forward-thinking companies who've transformed their hiring with Talent Pros
         </motion.p>
 
-        {/* Infinite scroll container */}
         <div className="relative">
           <div className="overflow-hidden py-8">
             <motion.div
@@ -124,10 +127,12 @@ const ClientLogosAdvanced = () => {
                     style={{ transformStyle: "preserve-3d" }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <img 
+                    <Image 
                       src={client.logo} 
                       alt={`${client.name} logo`} 
                       className="h-12 w-auto object-contain"
+                      width={120}
+                      height={48}
                     />
                   </motion.div>
                 </div>
@@ -135,12 +140,10 @@ const ClientLogosAdvanced = () => {
             </motion.div>
           </div>
 
-          {/* Gradient overlays */}
           <div className="absolute top-0 left-0 w-48 h-full bg-gradient-to-r from-muted via-muted/50 to-transparent pointer-events-none z-10" />
           <div className="absolute top-0 right-0 w-48 h-full bg-gradient-to-l from-muted via-muted/50 to-transparent pointer-events-none z-10" />
         </div>
 
-        {/* Stats row with enhanced animations */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
