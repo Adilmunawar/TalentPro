@@ -1258,6 +1258,9 @@ video {
 .mt-auto {
   margin-top: auto;
 }
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
 .block {
   display: block;
 }
@@ -4248,6 +4251,11 @@ All colors MUST be HSL.
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .md\:opacity-0 {

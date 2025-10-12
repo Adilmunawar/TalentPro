@@ -102,6 +102,7 @@ const Hero = () => {
         style={{
             filter: 'brightness(0.4)',
         }}
+        priority
       />
        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent z-1" />
       <ParticlesBackground />
@@ -156,7 +157,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -185,7 +186,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed"
           >
             We don't just fill positions; we build the teams that drive your
             success. Talent Pros connects international businesses with the
@@ -196,7 +197,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
             <motion.div
               whileHover={{ scale: 1.05, y: -5 }}
@@ -205,7 +206,7 @@ const Hero = () => {
               <Button
                 variant="cta"
                 size="lg"
-                className="text-lg px-10 py-7 h-auto shadow-[var(--shadow-glow)] group relative overflow-hidden"
+                className="text-base px-8 py-6 h-auto shadow-[var(--shadow-glow)] group relative overflow-hidden"
                 onClick={() => scrollToSection("contact")}
               >
                 <motion.div
@@ -226,7 +227,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-lg px-10 py-7 h-auto bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                className="text-base px-8 py-6 h-auto bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
                 onClick={() => scrollToSection("process")}
               >
                 See How It Works
@@ -239,7 +240,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -247,9 +248,9 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 whileHover={{ 
-                  scale: 1.1, 
-                  rotateY: 10,
-                  z: 50,
+                  scale: 1.05, 
+                  rotateY: 5,
+                  z: 30,
                   transition: { type: "spring", stiffness: 300 }
                 }}
                 transition={{ delay: 0.8 + index * 0.1 }}
@@ -268,7 +269,7 @@ const Hero = () => {
                 
                 <motion.div
                   className="relative z-10"
-                  whileHover={{ rotateX: 5 }}
+                  whileHover={{ rotateX: 2 }}
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   <motion.div
@@ -278,7 +279,7 @@ const Hero = () => {
                     <stat.icon className="w-8 h-8 text-accent mx-auto mb-3" />
                   </motion.div>
                   <motion.div 
-                    className="text-4xl font-bold text-white mb-2"
+                    className="text-3xl md:text-4xl font-bold text-white mb-2"
                     animate={{ 
                       textShadow: [
                         "0 0 0px rgba(255,255,255,0)",
