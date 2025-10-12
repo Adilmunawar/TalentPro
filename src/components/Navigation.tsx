@@ -55,15 +55,15 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-background/80 backdrop-blur-xl shadow-lg py-3 border-b border-border" 
+        isScrolled
+          ? "bg-background/80 backdrop-blur-xl shadow-lg py-3 border-b border-border"
           : "bg-transparent py-6"
       }`}
     >
       <div className="section-container">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.div 
+          <motion.div
             className="flex items-center space-x-2 cursor-pointer"
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection("home")}
@@ -71,7 +71,11 @@ const Navigation = () => {
             <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg">
               <span className="text-accent font-bold text-2xl">TP</span>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            <span
+              className={`text-2xl font-bold ${
+                isScrolled ? "text-primary" : "text-white"
+              }`}
+            >
               Talent Pros
             </span>
           </motion.div>
@@ -83,13 +87,11 @@ const Navigation = () => {
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
                 className={`relative font-medium transition-all duration-300 ${
-                  isScrolled 
-                    ? activeSection === link.id 
-                      ? "text-accent" 
-                      : "text-foreground hover:text-accent"
-                    : activeSection === link.id 
-                      ? "text-accent" 
-                      : "text-white hover:text-accent"
+                  activeSection === link.id
+                    ? "text-accent"
+                    : isScrolled
+                    ? "text-foreground hover:text-accent"
+                    : "text-white hover:text-accent"
                 }`}
               >
                 {link.label}
@@ -115,7 +117,9 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className={`md:hidden ${isScrolled ? "text-foreground" : "text-white"}`}
+            className={`md:hidden ${
+              isScrolled ? "text-foreground" : "text-white"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
