@@ -151,7 +151,7 @@ const Hero = () => {
               transition={{ duration: 3, repeat: Infinity }}
             >
               <Sparkles className="w-5 h-5" />
-              🌟 Trusted by 500+ Global Companies
+              Trusted by 500+ Global Companies
             </motion.span>
           </motion.div>
 
