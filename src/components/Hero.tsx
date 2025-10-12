@@ -16,7 +16,6 @@ const Hero = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -109,7 +108,7 @@ const Hero = () => {
 
       {/* Floating gradient orbs with 3D parallax */}
       <motion.div 
-        style={{ y, scale }}
+        style={{ y }}
         className="absolute top-20 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl"
         animate={{ 
           scale: [1, 1.2, 1],
@@ -118,7 +117,7 @@ const Hero = () => {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        style={{ y: useTransform(scrollYProgress, [0, 1], [0, 300]), scale }}
+        style={{ y: useTransform(scrollYProgress, [0, 1], [0, 300]) }}
         className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
         animate={{ 
           scale: [1, 1.3, 1],
@@ -127,7 +126,7 @@ const Hero = () => {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
 
-      <motion.div className="section-container py-32 text-center relative z-10" style={{ opacity, scale }}>
+      <motion.div className="section-container py-32 text-center relative z-10" style={{ opacity }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
