@@ -2,14 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import googleLogo from "@/assets/logos/google.png";
-import microsoftLogo from "@/assets/logos/microsoft.png";
-import amazonLogo from "@/assets/logos/amazon.png";
-import metaLogo from "@/assets/logos/meta.png";
-import appleLogo from "@/assets/logos/apple.png";
-import teslaLogo from "@/assets/logos/tesla.png";
-import ibmLogo from "@/assets/logos/ibm.png";
-import netflixLogo from "@/assets/logos/netflix.png";
 
 const ClientLogosAdvanced = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -33,26 +25,27 @@ const ClientLogosAdvanced = () => {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSectionRef = sectionRef.current;
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
     };
   }, []);
 
   const clients = [
-    { name: "Google", logo: googleLogo },
-    { name: "Microsoft", logo: microsoftLogo },
-    { name: "Amazon", logo: amazonLogo },
-    { name: "Meta", logo: metaLogo },
-    { name: "Apple", logo: appleLogo },
-    { name: "Tesla", logo: teslaLogo },
-    { name: "IBM", logo: ibmLogo },
-    { name: "Netflix", logo: netflixLogo },
+    { name: "Infotech", logo: "https://picsum.photos/seed/infotech/150/50" },
+    { name: "Apex Solutions", logo: "https://picsum.photos/seed/apex/150/50" },
+    { name: "Creative Minds", logo: "https://picsum.photos/seed/creative/150/50" },
+    { name: "Digital Scapes", logo: "https://picsum.photos/seed/digital/150/50" },
+    { name: "Quantum Leap", logo: "https://picsum.photos/seed/quantum/150/50" },
+    { name: "Summit Innovations", logo: "https://picsum.photos/seed/summit/150/50" },
+    { name: "Visionary Works", logo: "https://picsum.photos/seed/visionary/150/50" },
+    { name: "Zenith Group", logo: "https://picsum.photos/seed/zenith/150/50" },
   ];
 
   const duplicatedClients = [...clients, ...clients, ...clients];
@@ -131,8 +124,9 @@ const ClientLogosAdvanced = () => {
                       src={client.logo} 
                       alt={`${client.name} logo`} 
                       className="h-12 w-auto object-contain"
-                      width={120}
-                      height={48}
+                      width={150}
+                      height={50}
+                      data-ai-hint="logo"
                     />
                   </motion.div>
                 </div>
