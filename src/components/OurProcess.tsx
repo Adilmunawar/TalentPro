@@ -101,7 +101,7 @@ const OurProcess = () => {
     if (isVisible) {
       interval = setInterval(() => {
         setActiveStep((prev) => (prev + 1) % steps.length);
-      }, 4000);
+      }, 3000);
     }
     return () => {
       if (interval) {
@@ -140,83 +140,71 @@ const OurProcess = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-            <AnimatePresence>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, index) => {
+            const isActive = index === activeStep;
+            const colors = stepColors[step.color as keyof typeof stepColors];
+            
+            return (
+              <motion.div
+                key={step.number}
+                onMouseEnter={() => setActiveStep(index)}
+                className="relative group h-full"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 * index, type: "spring", stiffness: 100, damping: 12 }}
+              >
                 <motion.div
-                    key={activeStep}
-                    className="relative order-first md:order-last"
-                    initial={{ opacity: 0, x: 50, scale: 0.9 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: 50, scale: 0.9 }}
-                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                >
-                    <div className="bg-card p-8 rounded-3xl border-2 border-border min-h-[300px]">
-                        <div className="flex justify-between items-start mb-6">
-                            <div className={cn(
-                                `w-16 h-16 rounded-xl flex items-center justify-center shadow-lg`,
-                                stepColors[steps[activeStep].color as keyof typeof stepColors].icon,
-                                stepColors[steps[activeStep].color as keyof typeof stepColors].shadow
-                                )}>
-                            <steps[activeStep].icon className={cn(`w-8 h-8`, stepColors[steps[activeStep].color as keyof typeof stepColors].text)} />
-                            </div>
-                            <span className="text-8xl font-bold text-primary/10 select-none">
-                            {steps[activeStep].number}
-                            </span>
-                        </div>
-                        <h3 className={cn(
-                            `text-3xl font-bold mb-4 transition-colors`,
-                            stepColors[steps[activeStep].color as keyof typeof stepColors].text
-                            )}>
-                            {steps[activeStep].title}
-                        </h3>
-                        <p className="text-foreground/70 text-lg leading-relaxed">
-                            {steps[activeStep].description}
-                        </p>
+                  className={cn(
+                    "absolute -inset-0.5 rounded-3xl bg-gradient-to-br from-accent to-blue-500 blur-lg transition-opacity duration-500",
+                    isActive ? "opacity-30" : "opacity-0 group-hover:opacity-20"
+                  )}
+                />
+                <div className={cn(
+                  "relative bg-card p-8 rounded-2xl border-2 transition-all duration-300 h-full flex flex-col card-hover",
+                  isActive ? colors.border : "border-border group-hover:border-accent/30"
+                )}>
+                  <div className="flex justify-between items-start mb-6">
+                    <div className={cn(
+                      `w-16 h-16 rounded-xl flex items-center justify-center shadow-md transition-all duration-300`,
+                      isActive ? cn(colors.icon, colors.shadow, "scale-110") : "bg-muted"
+                      )}>
+                      <step.icon className={cn(`w-8 h-8`, isActive ? colors.text : "text-primary/70")} />
                     </div>
-                </motion.div>
-            </AnimatePresence>
+                    <span className="text-7xl font-bold text-primary/10 select-none group-hover:text-primary/20 transition-colors">
+                      {step.number}
+                    </span>
+                  </div>
 
-            <div className="space-y-4">
-            {steps.map((step, index) => (
-                <motion.div
-                    key={step.number}
-                    onMouseEnter={() => setActiveStep(index)}
-                    className="relative group"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.1 * index, type: "spring" }}
-                >
-                    <div className="relative bg-card p-6 rounded-2xl border-2 border-border transition-all duration-300 cursor-pointer overflow-hidden">
-                        <AnimatePresence>
-                        {index === activeStep && (
-                            <motion.div
-                                layoutId="active-process-highlight"
-                                className="absolute inset-0 bg-accent/10 border-accent/30 border-2 rounded-2xl"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.5 }}
-                            />
-                        )}
-                        </AnimatePresence>
-                        <div className="relative flex items-center gap-6">
-                            <span className={cn(
-                                "text-4xl font-bold transition-colors",
-                                index === activeStep ? stepColors[step.color as keyof typeof stepColors].text : "text-primary/30 group-hover:text-accent"
-                            )}>
-                                {step.number}
-                            </span>
-                            <h3 className={cn(
-                                "text-2xl font-bold transition-colors",
-                                index === activeStep ? "text-primary" : "text-foreground/70 group-hover:text-primary"
-                            )}>
-                                {step.title}
-                            </h3>
-                        </div>
-                    </div>
-                </motion.div>
-            ))}
-            </div>
+                  <div className="flex-grow">
+                    <h3 className={cn(
+                      `text-2xl font-bold mb-4 text-primary transition-colors`,
+                      isActive ? colors.text : "group-hover:text-accent"
+                      )}>
+                      {step.title}
+                    </h3>
+                    <p className="text-foreground/70 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-8 h-1.5 w-full bg-border rounded-full overflow-hidden">
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          key={activeStep}
+                          className={cn("h-full bg-gradient-to-r from-accent to-blue-400")}
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 3, ease: "linear" }}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -224,4 +212,3 @@ const OurProcess = () => {
 };
 
 export default OurProcess;
-    
