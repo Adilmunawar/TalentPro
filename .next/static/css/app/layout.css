@@ -1122,6 +1122,9 @@ video {
 .right-6 {
   right: 1.5rem;
 }
+.bottom-28 {
+  bottom: 7rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1916,6 +1919,9 @@ video {
 .border-white\/30 {
   border-color: rgb(255 255 255 / 0.3);
 }
+.border-primary\/20 {
+  border-color: hsl(var(--primary) / 0.2);
+}
 .border-l-transparent {
   border-left-color: transparent;
 }
@@ -2613,6 +2619,10 @@ video {
   --tw-shadow-color: rgb(168 85 247 / 0.5);
   --tw-shadow: var(--tw-shadow-colored);
 }
+.shadow-accent\/20 {
+  --tw-shadow-color: hsl(var(--accent) / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -3029,6 +3039,10 @@ All colors MUST be HSL.
 
 .hover\:bg-white\/20:hover {
   background-color: rgb(255 255 255 / 0.2);
+}
+
+.hover\:bg-accent\/10:hover {
+  background-color: hsl(var(--accent) / 0.1);
 }
 
 .hover\:text-accent:hover {
