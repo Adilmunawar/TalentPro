@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
 
 const ClientLogosAdvanced = () => {
@@ -49,6 +49,45 @@ const ClientLogosAdvanced = () => {
   ];
 
   const duplicatedClients = [...clients, ...clients, ...clients];
+
+  const AnimatedCounter = ({ value, suffix = "", prefix = "" }: { value: number; suffix?: string, prefix?: string }) => {
+    const [count, setCount] = useState(0);
+    const inView = useInView(sectionRef, { once: true, amount: 0.5 });
+  
+    useEffect(() => {
+      if (inView) {
+        const duration = 2000;
+        const steps = 60;
+        const increment = value / steps;
+        let current = 0;
+  
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= value) {
+            setCount(value);
+            clearInterval(timer);
+          } else {
+            setCount(Math.floor(current));
+          }
+        }, duration / steps);
+  
+        return () => clearInterval(timer);
+      }
+    }, [value, inView]);
+  
+    return (
+      <span>
+        {prefix}{count}{suffix}
+      </span>
+    );
+  };
+
+  const stats = [
+    { value: 72, suffix: "+", label: "Companies Served" },
+    { value: 40, suffix: "+", label: "Industry Sectors" },
+    { value: 99.2, suffix: "%", label: "Client Retention" },
+    { value: 24, suffix: "/7", label: "Global Support" },
+  ];
 
   return (
     <section ref={sectionRef} className="py-24 bg-gradient-to-b from-background to-muted relative overflow-hidden">
@@ -144,12 +183,7 @@ const ClientLogosAdvanced = () => {
           transition={{ delay: 0.4 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
         >
-          {[
-            { value: "Fortune 500", label: "Companies Served" },
-            { value: "150+", label: "Industry Sectors" },
-            { value: "99.2%", label: "Client Retention" },
-            { value: "24/7", label: "Global Support" },
-          ].map((stat, index) => (
+          {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -180,7 +214,7 @@ const ClientLogosAdvanced = () => {
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} prefix={stat.value === 24 ? '' : undefined} />
                 </motion.div>
                 <div className="text-sm text-foreground/60 font-medium">{stat.label}</div>
               </div>
