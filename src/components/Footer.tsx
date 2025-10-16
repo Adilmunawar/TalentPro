@@ -1,5 +1,5 @@
 "use client";
-import { Linkedin, Twitter } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
@@ -59,22 +59,13 @@ const Footer = () => {
             </div>
             <div className="flex space-x-4">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/talent-pros-pk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:text-accent transition-colors duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-accent transition-colors duration-200"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-6 h-6" />
               </a>
             </div>
           </div>
