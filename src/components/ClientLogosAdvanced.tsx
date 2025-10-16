@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
+import placeholderImages from "@/lib/placeholder-images.json";
 
 const ClientLogosAdvanced = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -38,14 +39,14 @@ const ClientLogosAdvanced = () => {
   }, []);
 
   const clients = [
-    { name: "Infotech", logo: "https://picsum.photos/seed/infotech/150/50" },
-    { name: "Apex Solutions", logo: "https://picsum.photos/seed/apex/150/50" },
-    { name: "Creative Minds", logo: "https://picsum.photos/seed/creative/150/50" },
-    { name: "Digital Scapes", logo: "https://picsum.photos/seed/digital/150/50" },
-    { name: "Quantum Leap", logo: "https://picsum.photos/seed/quantum/150/50" },
-    { name: "Summit Innovations", logo: "https://picsum.photos/seed/summit/150/50" },
-    { name: "Visionary Works", logo: "https://picsum.photos/seed/visionary/150/50" },
-    { name: "Zenith Group", logo: "https://picsum.photos/seed/zenith/150/50" },
+    { name: "Infotech", logo: placeholderImages.clientLogo.src },
+    { name: "Apex Solutions", logo: placeholderImages.clientLogo.src },
+    { name: "Creative Minds", logo: placeholderImages.clientLogo.src },
+    { name: "Digital Scapes", logo: placeholderImages.clientLogo.src },
+    { name: "Quantum Leap", logo: placeholderImages.clientLogo.src },
+    { name: "Summit Innovations", logo: placeholderImages.clientLogo.src },
+    { name: "Visionary Works", logo: placeholderImages.clientLogo.src },
+    { name: "Zenith Group", logo: placeholderImages.clientLogo.src },
   ];
 
   const duplicatedClients = [...clients, ...clients, ...clients];
@@ -148,7 +149,7 @@ const ClientLogosAdvanced = () => {
                   className="flex-shrink-0"
                 >
                   <motion.div 
-                    className="group px-8 py-6 bg-background rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 border border-border hover:border-accent/30 min-w-[200px] flex items-center justify-center grayscale hover:grayscale-0"
+                    className="group px-8 py-6 bg-background rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 border border-border hover:border-accent/30 min-w-[200px] flex items-center justify-center grayscale-0"
                     whileHover={{ 
                       scale: 1.1, 
                       rotateY: 10,
@@ -162,7 +163,7 @@ const ClientLogosAdvanced = () => {
                     <Image 
                       src={client.logo} 
                       alt={`${client.name} logo`} 
-                      className="h-12 w-auto object-contain"
+                      className="h-12 w-auto object-contain invert dark:invert-0"
                       width={150}
                       height={50}
                       data-ai-hint="logo"
