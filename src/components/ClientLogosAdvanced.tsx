@@ -214,7 +214,11 @@ const ClientLogosAdvanced = () => {
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} prefix={stat.value === 24 ? '' : undefined} />
+                  {stat.label === "Global Support" ? (
+                    <span>{stat.value}{stat.suffix}</span>
+                  ) : (
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  )}
                 </motion.div>
                 <div className="text-sm text-foreground/60 font-medium">{stat.label}</div>
               </div>

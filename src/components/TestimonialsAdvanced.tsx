@@ -233,8 +233,8 @@ const TestimonialsAdvanced = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-5xl mx-auto"
         >
           {[
-            { value: "850+", label: "Happy Clients Worldwide" },
-            { value: "12,000+", label: "Successful Placements" },
+            { value: "500+", label: "Happy Clients Worldwide" },
+            { value: "5000+", label: "Successful Placements" },
             { value: "99.1%", label: "Client Success Rate" },
             { value: "4.95/5", label: "Average Client Rating" },
           ].map((stat, index) => (

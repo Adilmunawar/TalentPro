@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Search, Users, CheckCircle, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -189,13 +189,17 @@ const OurProcess = () => {
                   </div>
                   
                   <div className="mt-8 h-1.5 w-full bg-border rounded-full overflow-hidden">
-                    <motion.div
-                      className={cn(`h-full bg-gradient-to-r`, isActive ? "from-accent to-blue-400" : "from-muted to-muted")}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: isActive ? 1 : 0 }}
-                      style={{ originX: 0 }}
-                      transition={{ duration: 0.8, ease: "easeInOut" }}
-                    />
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          key={activeStep}
+                          className={cn("h-full bg-gradient-to-r from-accent to-blue-400")}
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 3, ease: "linear" }}
+                        />
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
               </motion.div>

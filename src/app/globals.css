@@ -148,4 +148,23 @@ All colors MUST be HSL.
                 linear-gradient(135deg, hsl(166 100% 39%), hsl(200 80% 50%)) border-box;
     border: 2px solid transparent;
   }
+
+  .marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .marquee-container:hover .marquee {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
+
+    

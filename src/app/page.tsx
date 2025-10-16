@@ -5,6 +5,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Services from "@/components/Services";
 import OurProcess from "@/components/OurProcess";
 import TestimonialsAdvanced from "@/components/TestimonialsAdvanced";
+import CurrentOpenings from "@/components/CurrentOpenings";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -21,6 +22,7 @@ const Index = () => {
         <WhyChooseUs />
         <OurProcess />
         <TestimonialsAdvanced />
+        <CurrentOpenings />
         <FinalCTA />
       </main>
       <Footer />

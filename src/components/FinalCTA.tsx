@@ -41,10 +41,10 @@ const FinalCTA = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    const { name, email, company, message } = formData;
+    const whatsappMessage = `Hello, I'm ${name} from ${company}.\n\nMy email is ${email}.\n\nMy message is: ${message}`;
+    const whatsappUrl = `https://wa.me/923248406582?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank');
     setFormData({ name: "", email: "", company: "", message: "" });
   };
 

@@ -1,0 +1,60 @@
+[
+  {
+    "title": "Cyber Security Technician",
+    "location": "Qatar (Oil & Gas / Petrochemical Environment)",
+    "contract": "Full-time",
+    "status": "Hiring",
+    "details": {
+      "salary": "Attractive package + other benefits",
+      "overview": "Our client is looking for a Cyber Security Technician to support OT/ICS environments (DCS, SIS, Non-DCS). The role involves maintenance, patching, backups, field cybersecurity work, and asset security in an industrial setup."
+    }
+  },
+  {
+    "title": "Big Data Platform Developer",
+    "function": "Cybersecurity / Data Platform",
+    "contract": "Full-time",
+    "status": "Closed",
+    "details": {
+      "overview": "Seeking a Big Data Platform Developer to build and maintain our next-generation data infrastructure. Experience with Hadoop, Spark, and Kafka is essential. You will be working in a fast-paced, agile environment to deliver cutting-edge data solutions."
+    }
+  },
+  {
+    "title": "Compromise Recovery Specialist",
+    "function": "Cybersecurity Practice",
+    "contract": "Full-time",
+    "status": "Closed",
+    "details": {
+      "overview": "As a Compromise Recovery Specialist, you will be responsible for leading the recovery efforts after a security breach. This role requires deep technical knowledge of incident response, forensics, and remediation strategies."
+    }
+  },
+  {
+    "title": "Cyber Incident Oversight Specialist",
+    "role": "Senior Consultant – Cyber Incident Oversight",
+    "function": "Cybersecurity Practice",
+    "contract": "Full-time",
+    "status": "Closed",
+    "details": {
+      "overview": "In this senior role, you will provide oversight and governance for cyber incident response activities. You will ensure that incidents are managed effectively, and that lessons learned are integrated into our security posture."
+    }
+  },
+  {
+    "title": "Digital Forensic & Incident Response (DFIR) Consultant",
+    "role": "Senior Consultant – DFIR",
+    "function": "Cybersecurity Practice",
+    "contract": "Full-time",
+    "status": "Closed",
+    "details": {
+      "overview": "Join our DFIR team as a Senior Consultant. You will conduct complex digital forensic investigations, respond to security incidents, and help clients build resilient incident response capabilities."
+    }
+  },
+  {
+    "title": "Cyber Threat Intelligence (CTI) Consultant",
+    "role": "Senior Cyber Threat Intelligence Specialist",
+    "function": "Cybersecurity Practice",
+    "contract": "Full-time",
+    "status": "Hiring",
+    "details": {
+      "overview": "As a CTI Specialist, you will be responsible for collecting, analyzing, and disseminating threat intelligence to protect our clients. You will track threat actors, analyze malware, and provide actionable intelligence to security teams."
+    }
+  }
+]
