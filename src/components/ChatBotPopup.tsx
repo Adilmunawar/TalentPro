@@ -4,72 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const RobotIcon = () => (
-  <motion.svg
-    width="40"
-    height="40"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="text-accent-foreground"
-  >
-    <motion.path
-      d="M19 9V17C19 18.1046 18.1046 19 17 19H7C5.89543 19 5 18.1046 5 17V9C5 7.89543 5.89543 7 7 7H17C18.1046 7 19 7.89543 19 9Z"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <motion.path
-      d="M5 14H19"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <motion.path
-      d="M15.5 4.5L18 7"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      initial={{ y1: 4.5, y2: 7 }}
-      animate={{ y1: [4.5, 3, 4.5], y2: [7, 5.5, 7] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-    />
-    <motion.path
-      d="M8.5 4.5L6 7"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      initial={{ y1: 4.5, y2: 7 }}
-      animate={{ y1: [4.5, 3, 4.5], y2: [7, 5.5, 7] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-    />
-    {/* Blinking Eyes */}
-    <motion.circle
-      cx="9.5"
-      cy="11.5"
-      r="1"
-      fill="currentColor"
-      initial={{ scaleY: 1 }}
-      animate={{ scaleY: [1, 0.1, 1, 1, 1, 1] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-    />
-    <motion.circle
-      cx="14.5"
-      cy="11.5"
-      r="1"
-      fill="currentColor"
-      initial={{ scaleY: 1 }}
-      animate={{ scaleY: [1, 0.1, 1, 1, 1, 1] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-    />
-  </motion.svg>
-);
-
-
 const ChatBotPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -125,13 +59,13 @@ const ChatBotPopup = () => {
                   </motion.div>
                 ) : (
                   <motion.div
-                    key="robot"
-                    initial={{ opacity: 0, rotate: 90, scale: 0.5 }}
-                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                    exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                    key="message"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5 }}
                     transition={{ duration: 0.3, ease: "circOut" }}
                   >
-                    <RobotIcon />
+                    <MessageSquare className="w-10 h-10" />
                   </motion.div>
                 )}
               </AnimatePresence>
