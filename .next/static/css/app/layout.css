@@ -1131,6 +1131,9 @@ video {
 .z-\[1\] {
   z-index: 1;
 }
+.order-first {
+  order: -9999;
+}
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -1380,6 +1383,9 @@ video {
 }
 .min-h-svh {
   min-height: 100svh;
+}
+.min-h-\[300px\] {
+  min-height: 300px;
 }
 .w-0 {
   width: 0px;
@@ -2381,6 +2387,10 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -2506,6 +2516,9 @@ video {
 }
 .text-white\/90 {
   color: rgb(255 255 255 / 0.9);
+}
+.text-primary\/30 {
+  color: hsl(var(--primary) / 0.3);
 }
 .underline {
   text-decoration-line: underline;
@@ -3242,6 +3255,10 @@ All colors MUST be HSL.
 .group:hover .group-hover\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.group:hover .group-hover\:text-primary {
+  color: hsl(var(--primary));
 }
 
 .group\/menu-item:hover .group-hover\/menu-item\:opacity-100 {
@@ -4072,6 +4089,10 @@ All colors MUST be HSL.
 
   .md\:absolute {
     position: absolute;
+  }
+
+  .md\:order-last {
+    order: 9999;
   }
 
   .md\:block {

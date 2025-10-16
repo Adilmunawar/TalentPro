@@ -107,7 +107,7 @@ const OurProcess = () => {
       if (interval) {
         clearInterval(interval);
       }
-    }
+    };
   }, [isVisible, steps.length]);
 
   return (
