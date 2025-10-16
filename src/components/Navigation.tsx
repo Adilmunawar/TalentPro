@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,16 +69,13 @@ const Navigation = () => {
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection("home")}
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-accent font-bold text-2xl">TP</span>
-            </div>
-            <span
-              className={`text-2xl font-bold ${
-                isScrolled ? "text-primary" : "text-white"
-              }`}
-            >
-              Talent Pros
-            </span>
+            <Image 
+              src="/upscalemedia-transformed.png" 
+              alt="Talent Pros Logo" 
+              width={isScrolled ? 48 : 56} 
+              height={isScrolled ? 48 : 56} 
+              className="transition-all duration-300"
+            />
           </motion.div>
 
           {/* Desktop Navigation */}

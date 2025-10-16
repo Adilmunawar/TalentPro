@@ -1,5 +1,6 @@
 "use client";
 import { Linkedin } from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
@@ -16,10 +17,12 @@ const Footer = () => {
           {/* Column 1: Logo & Slogan */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-accent font-bold text-xl">TP</span>
-              </div>
-              <span className="text-2xl font-bold text-primary">Talent Pros</span>
+               <Image 
+                src="/upscalemedia-transformed.png" 
+                alt="Talent Pros Logo" 
+                width={56} 
+                height={56}
+              />
             </div>
             <p className="text-foreground/70 text-sm">
               Your Strategic Partner in Global Talent Acquisition
