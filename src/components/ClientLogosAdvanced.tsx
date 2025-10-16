@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
-import placeholderImages from "@/lib/placeholder-images.json";
 
 const ClientLogosAdvanced = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -39,17 +38,15 @@ const ClientLogosAdvanced = () => {
   }, []);
 
   const clients = [
-    { name: "Infotech", logo: placeholderImages.clientLogo.src },
-    { name: "Apex Solutions", logo: placeholderImages.clientLogo.src },
-    { name: "Creative Minds", logo: placeholderImages.clientLogo.src },
-    { name: "Digital Scapes", logo: placeholderImages.clientLogo.src },
-    { name: "Quantum Leap", logo: placeholderImages.clientLogo.src },
-    { name: "Summit Innovations", logo: placeholderImages.clientLogo.src },
-    { name: "Visionary Works", logo: placeholderImages.clientLogo.src },
-    { name: "Zenith Group", logo: placeholderImages.clientLogo.src },
+    { name: "Client 1", logo: "/17.png" },
+    { name: "Client 2", logo: "/19.png" },
+    { name: "Client 3", logo: "/36.png" },
+    { name: "Client 4", logo: "/42.png" },
+    { name: "Client 5", logo: "/46.png" },
+    { name: "Crew Logix", logo: "/crew-logix.png" },
   ];
 
-  const duplicatedClients = [...clients, ...clients, ...clients];
+  const duplicatedClients = [...clients, ...clients, ...clients, ...clients];
 
   const AnimatedCounter = ({ value, suffix = "", prefix = "" }: { value: number; suffix?: string, prefix?: string }) => {
     const [count, setCount] = useState(0);
@@ -132,13 +129,13 @@ const ClientLogosAdvanced = () => {
             <motion.div
               className="flex gap-16 items-center"
               animate={{
-                x: ["0%", "-33.33%"],
+                x: ["0%", "-50%"],
               }}
               transition={{
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: 30,
+                  duration: 40,
                   ease: "linear",
                 },
               }}
@@ -149,7 +146,7 @@ const ClientLogosAdvanced = () => {
                   className="flex-shrink-0"
                 >
                   <motion.div 
-                    className="group px-8 py-6 bg-background rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 border border-border hover:border-accent/30 min-w-[200px] flex items-center justify-center grayscale-0"
+                    className="group px-8 py-6 bg-background rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 border border-border hover:border-accent/30 min-w-[200px] flex items-center justify-center"
                     whileHover={{ 
                       scale: 1.1, 
                       rotateY: 10,
@@ -163,9 +160,9 @@ const ClientLogosAdvanced = () => {
                     <Image 
                       src={client.logo} 
                       alt={`${client.name} logo`} 
-                      className="h-12 w-auto object-contain invert dark:invert-0"
+                      className="h-16 w-auto object-contain"
                       width={150}
-                      height={50}
+                      height={60}
                       data-ai-hint="logo"
                     />
                   </motion.div>
