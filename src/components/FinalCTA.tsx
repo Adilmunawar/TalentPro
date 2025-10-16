@@ -56,9 +56,9 @@ const FinalCTA = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "contact@talentpros.com" },
+    { icon: Mail, label: "Email", value: "info@talent.pro.pk" },
     { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
-    { icon: MapPin, label: "Office", value: "San Francisco, CA" },
+    { icon: MapPin, label: "Office", value: "Lahore, Pakistan" },
   ];
 
   return (

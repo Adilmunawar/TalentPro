@@ -54,7 +54,7 @@ const Footer = () => {
             <h3 className="font-semibold text-primary mb-4">Connect With Us</h3>
             <div className="space-y-3 mb-4">
               <p className="text-foreground/70 text-sm">
-                <strong>Email:</strong> contact@talentpros.com
+                <strong>Email:</strong> info@talent.pro.pk
               </p>
               <p className="text-foreground/70 text-sm">
                 <strong>Phone:</strong> +1 (555) 123-4567
