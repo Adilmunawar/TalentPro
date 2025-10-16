@@ -56,9 +56,6 @@ const Footer = () => {
               <p className="text-foreground/70 text-sm">
                 <strong>Email:</strong> info@talent.pro.pk
               </p>
-              <p className="text-foreground/70 text-sm">
-                <strong>Phone:</strong> +1 (555) 123-4567
-              </p>
             </div>
             <div className="flex space-x-4">
               <a

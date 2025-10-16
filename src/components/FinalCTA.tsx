@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Mail, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const FinalCTA = () => {
@@ -57,7 +57,6 @@ const FinalCTA = () => {
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "info@talent.pro.pk" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
     { icon: MapPin, label: "Office", value: "Lahore, Pakistan" },
   ];
 
