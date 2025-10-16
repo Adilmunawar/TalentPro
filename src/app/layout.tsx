@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import ChatBotPopup from "@/components/ChatBotPopup";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
@@ -35,6 +36,7 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Sonner />
+          <ChatBotPopup />
         </TooltipProvider>
       </body>
     </html>
