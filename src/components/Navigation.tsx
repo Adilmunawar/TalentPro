@@ -4,51 +4,62 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ["home", "services", "process", "testimonials", "contact"];
-      let currentSection = "";
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            currentSection = sectionId;
-            break;
+      if (pathname === '/') {
+        const sections = ["home", "services", "process", "testimonials", "contact"];
+        let currentSection = "";
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom >= 100) {
+              currentSection = sectionId;
+              break;
+            }
           }
         }
-      }
-
-      if (currentSection) {
-        setActiveSection(currentSection);
+        if (currentSection) {
+          setActiveSection(currentSection);
+        }
       }
     };
+    
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
+    setIsMobileMenuOpen(false);
+    if (pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
   const navLinks = [
-    { label: "Home", id: "home" },
-    { label: "Our Process", id: "process" },
-    { label: "Services", id: "services" },
-    { label: "Testimonials", id: "testimonials" },
-    { label: "Contact Us", id: "contact" },
+    { label: "Home", id: "home", href: "/" },
+    { label: "Our Process", id: "process", href: "/#process" },
+    { label: "Services", id: "services", href: "/#services" },
+    { label: "Careers", id: "careers", href: "/careers"},
+    { label: "Contact Us", id: "contact", href: "/#contact" },
   ];
 
   return (
@@ -56,7 +67,7 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMobileMenuOpen || pathname !== '/'
           ? "bg-background/80 backdrop-blur-xl shadow-lg py-3 border-b border-border"
           : "bg-transparent py-6"
       }`}
@@ -72,36 +83,55 @@ const Navigation = () => {
             <Image 
               src="/upscalemedia-transformed.png" 
               alt="Talent Pros Logo" 
-              width={isScrolled ? 48 : 56} 
-              height={isScrolled ? 48 : 56} 
+              width={isScrolled || pathname !== '/' ? 48 : 56} 
+              height={isScrolled || pathname !== '/' ? 48 : 56} 
               className="transition-all duration-300"
             />
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`relative font-medium transition-all duration-300 ${
-                  activeSection === link.id
-                    ? "text-accent"
-                    : isScrolled
-                    ? "text-foreground hover:text-accent"
-                    : "text-white hover:text-accent"
-                }`}
-              >
-                {link.label}
-                {activeSection === link.id && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (pathname === '/' && activeSection === link.id);
+              if (link.id === 'careers') {
+                return (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    className={cn(`relative font-medium transition-all duration-300`,
+                      isActive ? "text-accent" : isScrolled || pathname !== '/' ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
+                    )}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeSection"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                );
+              }
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={cn(`relative font-medium transition-all duration-300`,
+                    isActive ? "text-accent" : isScrolled || pathname !== '/' ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
+                  )}
+                >
+                  {link.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
             <Button
               variant="cta"
               size="lg"
@@ -115,9 +145,9 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className={`md:hidden ${
-              isScrolled ? "text-foreground" : "text-white"
-            }`}
+            className={cn(`md:hidden`,
+              isScrolled || pathname !== '/' ? "text-foreground" : "text-white"
+            )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -133,17 +163,33 @@ const Navigation = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden mt-4 pb-4 space-y-4 bg-background/95 backdrop-blur-lg rounded-lg p-4"
           >
-            {navLinks.map((link) => (
+            {navLinks.map((link) => {
+               const isActive = pathname === link.href || (pathname === '/' && activeSection === link.id);
+               if (link.id === 'careers') {
+                 return (
+                    <Link
+                      key={link.id}
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(`block w-full text-left text-foreground hover:text-primary transition-colors duration-200 font-medium py-2`,
+                        isActive ? "text-accent" : ""
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                 )
+               }
+              return (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`block w-full text-left text-foreground hover:text-primary transition-colors duration-200 font-medium py-2 ${
-                  activeSection === link.id ? "text-accent" : ""
-                }`}
+                className={cn(`block w-full text-left text-foreground hover:text-primary transition-colors duration-200 font-medium py-2`,
+                  isActive ? "text-accent" : ""
+                )}
               >
                 {link.label}
               </button>
-            ))}
+            )})}
             <Button
               variant="cta"
               size="lg"
