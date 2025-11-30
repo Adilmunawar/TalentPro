@@ -2490,6 +2490,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
 }
+.text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
+}
 .text-muted-foreground {
   color: hsl(var(--muted-foreground));
 }
@@ -2516,6 +2520,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(168 85 247 / var(--tw-text-opacity, 1));
 }
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
 .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
 }
@@ -2540,14 +2548,6 @@ video {
 }
 .text-white\/90 {
   color: rgb(255 255 255 / 0.9);
-}
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
-}
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 .underline {
   text-decoration-line: underline;
@@ -4180,12 +4180,12 @@ All colors MUST be HSL.
     grid-template-columns: auto 1fr;
   }
 
-  .md\:p-16 {
-    padding: 4rem;
-  }
-
   .md\:p-12 {
     padding: 3rem;
+  }
+
+  .md\:p-16 {
+    padding: 4rem;
   }
 
   .md\:text-2xl {
