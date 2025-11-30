@@ -41,6 +41,7 @@ export function ResumeSubmitForm() {
     interested_job: "",
     resume: null,
   });
+  const [customJob, setCustomJob] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -78,13 +79,15 @@ export function ResumeSubmitForm() {
       return;
     }
 
+    const job = formData.interested_job === 'Other' ? customJob : formData.interested_job;
+
     // Validation
     if (!formData.candidate_name.trim()) {
       setErrorMessage("Please enter your name.");
       return;
     }
-    if (!formData.interested_job) {
-      setErrorMessage("Please select a job position.");
+    if (!job) {
+      setErrorMessage("Please select or specify a job position.");
       return;
     }
     if (!formData.resume) {
@@ -100,7 +103,7 @@ export function ResumeSubmitForm() {
       submitData.append("candidate_name", formData.candidate_name.trim());
       submitData.append("candidate_email", formData.candidate_email.trim());
       submitData.append("candidate_phone", formData.candidate_phone.trim());
-      submitData.append("interested_job", formData.interested_job);
+      submitData.append("interested_job", job);
       submitData.append("admin_email", ADMIN_EMAIL);
       submitData.append("resume", formData.resume);
       submitData.append("honeypot", honeypot);
@@ -125,6 +128,7 @@ export function ResumeSubmitForm() {
         interested_job: "",
         resume: null,
       });
+      setCustomJob("");
     } catch (error: any) {
       console.error("Submission error:", error);
       setSubmitStatus("error");
@@ -231,6 +235,19 @@ export function ResumeSubmitForm() {
           </SelectContent>
         </Select>
       </div>
+
+      {formData.interested_job === 'Other' && (
+        <div className="space-y-2">
+          <Label htmlFor="custom-job">Please Specify *</Label>
+          <Input
+            id="custom-job"
+            placeholder="e.g., Blockchain Developer"
+            value={customJob}
+            onChange={(e) => setCustomJob(e.target.value)}
+            required
+          />
+        </div>
+      )}
 
       <div className="space-y-2">
         <Label htmlFor="resume">Upload Resume * (PDF or DOCX, max 10MB)</Label>
