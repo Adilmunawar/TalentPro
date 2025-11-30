@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Loader2, Upload, CheckCircle, AlertCircle } from "lucide-react";
 
 // IMPORTANT: Replace with your admin email configured in Talent Pro
-const ADMIN_EMAIL = "Adilmunawarx@gmail.com";
+const ADMIN_EMAIL = "adilfromavengers@gmail.com";
 const API_ENDPOINT = "https://olkbhjyfpdvcovtuekzt.supabase.co/functions/v1/receive-external-resume";
 
 interface FormState {
